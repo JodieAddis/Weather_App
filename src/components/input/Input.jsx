@@ -25,6 +25,7 @@ export const Input = (event) => {
                 />
                 <button onClick={(e) => handleClickEvent(e)}>Search</button>
             </form>
+            {country}
         </>
     );
 };

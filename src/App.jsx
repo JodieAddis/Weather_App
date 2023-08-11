@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { Input } from "./components/input/Input";
 import { GeoLocation } from "./Geo";
 import "./App.css";
 
@@ -8,7 +7,6 @@ function App() {
 
     return (
         <>
-            {/* <Input /> */}
             <GeoLocation />
         </>
     );
