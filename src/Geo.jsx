@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-// import { apiKey } from "./apiKey";
+import config from "./config";
+import { Weather } from "./Weather";
 
 export const GeoLocation = () => {
     const [location, setLocation] = useState("");
@@ -11,7 +12,7 @@ export const GeoLocation = () => {
 
     const disableSearch = location.trim() === ""; //locationSearch.trim() enlève les espaces vides au début et à la fin de la chaîne (nettoyage de la saisie)
 
-    const apiKey = "5cb7fc28972cc41b9f08bb663b766ae2";
+    const apiKey = config.apiKey;
     const fetchData = async () => {
         try {
             const locationApi = await fetch(
@@ -20,18 +21,12 @@ export const GeoLocation = () => {
             const locationData = await locationApi.json();
             const locationCity = locationData[0];
 
-            // Stocker les données
-            // const cityName = locationCity.name;
-            // const lat = locationCity.lat;
-            // const lon = locationCity.lon;
-
             setCityName(locationCity.name);
             setLat(locationCity.lat);
             setLon(locationCity.lon);
 
             console.log(cityName, lat, lon);
 
-            // setData(await locationCity.json());
             setData(locationCity);
             console.log(data);
         } catch {
@@ -47,8 +42,11 @@ export const GeoLocation = () => {
         fetchData();
     }, [location]);
 
+    const coorData = [cityName, lat, lon];
+
     return (
         <>
+            <Weather cityName={cityName} lat={lat} lon={lon} />
             <form
                 method="get"
                 onSubmit={(event) => event.preventDefault()}
@@ -58,7 +56,7 @@ export const GeoLocation = () => {
                     type="text"
                     name=""
                     id=""
-                    placeholder="Enter country "
+                    placeholder="Enter city "
                     value={location}
                     onChange={(e) => setLocation(e.target.value)} //A chaque changement détecté, le setLocation mis à jour avec la valeur de l'input ciblée
                 />
@@ -66,11 +64,6 @@ export const GeoLocation = () => {
                     Search
                 </button>
             </form>
-            <div>
-                <p>{cityName}</p>
-                <p>{lat}</p>
-                <p>{lon}</p>
-            </div>
         </>
     );
 };
