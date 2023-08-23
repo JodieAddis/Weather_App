@@ -1,11 +1,9 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { GeoLocation } from "./Geo";
-import { Weather } from "./Weather";
+import { Weather } from "./Weather_2";
 import "./App.css";
 
 function App() {
-    const [count, setCount] = useState(0);
-
     return (
         <>
             <GeoLocation />
