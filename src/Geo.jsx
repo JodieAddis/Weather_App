@@ -4,7 +4,6 @@ import { Weather } from "./Weather_2";
 
 export const GeoLocation = () => {
     const [location, setLocation] = useState("");
-    const [data, setData] = useState([]);
 
     const [cityName, setCityName] = useState(""); //State pour le nom
     const [lat, setLat] = useState(null); //State pour la latitude
@@ -12,11 +11,12 @@ export const GeoLocation = () => {
 
     const disableSearch = location.trim() === ""; //locationSearch.trim() enlève les espaces vides au début et à la fin de la chaîne (nettoyage de la saisie)
 
-    const apiKey = config.apiKey;
+    const API_KEY = config.apiKey;
+
     const fetchData = async () => {
         try {
             const locationApi = await fetch(
-                `http://api.openweathermap.org/geo/1.0/direct?q={Rome}&limit=1&appid=5cb7fc28972cc41b9f08bb663b766ae2`
+                `http://api.openweathermap.org/geo/1.0/direct?q=Rome&limit=1&appid=${API_KEY}`
             );
             const locationData = await locationApi.json();
             const locationCity = locationData[0];
@@ -30,7 +30,7 @@ export const GeoLocation = () => {
 
             setData(locationCity);
         } catch {
-            console.log("error");
+            // console.log("error");
         }
     };
 
@@ -45,18 +45,14 @@ export const GeoLocation = () => {
     return (
         <>
             <Weather cityName={cityName} lat={lat} lon={lon} />
-            <form
-                method="get"
-                onSubmit={(event) => event.preventDefault()}
-                //Prevent the refresh
-            >
+            <form method="get" onSubmit={(event) => event.preventDefault()}>
                 <input
                     type="text"
                     name=""
                     id=""
                     placeholder="Enter city "
                     value={location}
-                    onChange={(e) => setLocation(e.target.value)} //A chaque changement détecté, le setLocation mis à jour avec la valeur de l'input ciblée
+                    onChange={(e) => setLocation(e.target.value)}
                 />
                 <button
                     onClick={handleSearch}
