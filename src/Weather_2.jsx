@@ -14,7 +14,7 @@ export const Weather = ({ lat, lon }) => {
     useEffect(() => {
         setWeather({ ...weather, isLoading: true });
         fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
         )
             .then((response) => response.json())
             .then((result) => {
@@ -39,19 +39,19 @@ export const Weather = ({ lat, lon }) => {
                 <>
                     <section>
                         <h1>{data.name}</h1>
-                        <h2>{data.main.temp} °C</h2>
+                        <h2>{data.main.temp}°C</h2>
                         <img
                             src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
                             alt="weather icon"
                         />
                         <p>{data.weather[0].main}</p>
-                        <p>{data.main.feels_like}</p>
+                        <p>Feels like {data.main.feels_like}°C</p>
                     </section>
                     <section>
                         <ul>
-                            <li>{data.main.humidity}%</li>
-                            <li>{data.main.pressure} Pa</li>
-                            <li>{data.wind.speed} m/s</li>
+                            <li>Humidity: {data.main.humidity}%</li>
+                            <li>Pressure: {data.main.pressure} Pa</li>
+                            <li>Wind: {data.wind.speed} m/s</li>
                         </ul>
                     </section>
                 </>
@@ -59,5 +59,3 @@ export const Weather = ({ lat, lon }) => {
         </>
     );
 };
-
-// https://api.openweathermap.org/data/2.5/weather?lat=41.8933&lon=12.4829&appid=${API_KEY}&units=metric

@@ -16,7 +16,7 @@ export const GeoLocation = () => {
     const fetchData = async () => {
         try {
             const locationApi = await fetch(
-                `http://api.openweathermap.org/geo/1.0/direct?q=Rome&limit=1&appid=${API_KEY}`
+                `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${API_KEY}`
             );
             const locationData = await locationApi.json();
             const locationCity = locationData[0];
