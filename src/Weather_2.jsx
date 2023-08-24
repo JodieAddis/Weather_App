@@ -37,18 +37,27 @@ export const Weather = ({ lat, lon }) => {
             {weather.hasError && <p>Une erreur s'est produite</p>}
             {data && data.weather && data.weather.length > 0 && (
                 <>
-                    <section>
-                        <h1>{data.name}</h1>
-                        <h2>{data.main.temp}°C</h2>
-                        <img
-                            src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-                            alt="weather icon"
-                        />
-                        <p>{data.weather[0].main}</p>
-                        <p>Feels like {data.main.feels_like}°C</p>
+                    <section className=" flex flex-col text-white">
+                        <h2 className="text-center text-3xl font-bold m-8">
+                            {data.name}
+                        </h2>
+                        <div className=" self-center  flex justify-center bg-blue-500 w-52 h-52 rounded-t-full rounded-b-full">
+                            <p className="self-center">{data.main.temp}°C</p>
+                            <div>
+                                <img
+                                    className="min-w-min"
+                                    src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                                    alt="weather icon"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <p>{data.weather[0].main}</p>
+                            <p>Feels like {data.main.feels_like}°C</p>
+                        </div>
                     </section>
                     <section>
-                        <ul>
+                        <ul className="text-white">
                             <li>Humidity: {data.main.humidity}%</li>
                             <li>Pressure: {data.main.pressure} Pa</li>
                             <li>Wind: {data.wind.speed} m/s</li>

@@ -45,7 +45,11 @@ export const GeoLocation = () => {
     return (
         <>
             <Weather cityName={cityName} lat={lat} lon={lon} />
-            <form method="get" onSubmit={(event) => event.preventDefault()}>
+            <form
+                method="get"
+                onSubmit={(event) => event.preventDefault()}
+                className="flex-col justify-center"
+            >
                 <input
                     type="text"
                     name=""
@@ -54,13 +58,15 @@ export const GeoLocation = () => {
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                 />
-                <button
-                    onClick={handleSearch}
-                    disabled={disableSearch}
-                    className="submit_location"
-                >
-                    Search
-                </button>
+                <div>
+                    <button
+                        onClick={handleSearch}
+                        disabled={disableSearch}
+                        className="text-center bg-white rounded py-2 px-3 m-5"
+                    >
+                        Search
+                    </button>
+                </div>
             </form>
         </>
     );
