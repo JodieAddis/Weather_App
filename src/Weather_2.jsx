@@ -38,26 +38,38 @@ export const Weather = ({ lat, lon }) => {
             {data && data.weather && data.weather.length > 0 && (
                 <>
                     <section className=" flex flex-col text-white">
-                        <h2 className="text-center text-3xl font-bold m-8">
+                        <h2 className="text-center text-4xl font-bold m-8">
                             {data.name}
                         </h2>
-                        <div className=" self-center  flex justify-center bg-blue-500 w-52 h-52 rounded-t-full rounded-b-full">
-                            <p className="self-center">{data.main.temp}°C</p>
-                            <div>
-                                <img
-                                    className="min-w-min"
-                                    src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
-                                    alt="weather icon"
-                                />
+                        <div className=" self-center bg-blue-500 w-56 h-56 rounded-t-full rounded-b-full">
+                            <div className="flex justify-center flex-col text-center my-auto">
+                                <p className="">{data.weather[0].main}</p>
+                                <p className="flex self-center text-6xl font-bold">
+                                    {data.main.temp}°
+                                </p>
+                                <div>
+                                    {/* <img
+                                        className="min-w-min self-center"
+                                        src={`http://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+                                        alt="weather icon"
+                                    /> */}
+                                </div>
+                                <p className="">
+                                    Feels like {data.main.feels_like}°
+                                </p>
                             </div>
                         </div>
-                        <div>
-                            <p>{data.weather[0].main}</p>
-                            <p>Feels like {data.main.feels_like}°C</p>
-                        </div>
                     </section>
-                    <section>
-                        <ul className="text-white">
+                    <section className="text-white">
+                        <ul className="flex flex-row justify-around my-9">
+                            <li>Min. temp.: {data.main.temp_min}° </li>
+                            <li>Max. temp.: {data.main.temp_max}°</li>
+                        </ul>
+                    </section>
+                    <section className="weather__details flex justify-center flex-wrap text-white">
+                        <ul className="text-center">
+                            <li>Sunrise {data.sys.sunrise}</li>
+                            <li>Sunset {data.sys.sunset}</li>
                             <li>Humidity: {data.main.humidity}%</li>
                             <li>Pressure: {data.main.pressure} Pa</li>
                             <li>Wind: {data.wind.speed} m/s</li>
