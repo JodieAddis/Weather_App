@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GeoLocation } from "./Geo";
+// import { GeoLocation } from "./Geo";
 import config from "./config";
 
 const API_KEY = config.apiKey;
