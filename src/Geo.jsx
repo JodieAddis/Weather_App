@@ -4,7 +4,8 @@ import { Weather } from "./Weather_2";
 import list from "./assets/image/list.svg";
 import close from "./assets/image/close.svg";
 import search from "./assets/image/search.svg";
-import sunshine from "./assets/image/sunshine.jpg";
+// import { Autocomplete } from "./Autocomplete";
+// import { SearchList } from "./SearchList";
 
 export const GeoLocation = () => {
     const [location, setLocation] = useState("");
@@ -20,6 +21,9 @@ export const GeoLocation = () => {
     const handleInputLocation = (e) => {
         setInputLocation(e.target.value);
     };
+
+    //Essai pour la création d'un input autocomplete
+    const [results, setResults] = useState();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -90,14 +94,18 @@ export const GeoLocation = () => {
                                         type="text"
                                         name="location"
                                         id="input_location"
-                                        placeholder="Choose a city"
+                                        placeholder="City name"
                                         className="text-md"
                                         value={inputLocation}
                                         onChange={handleInputLocation}
                                     />
+                                    {/* <div>
+                                        <Autocomplete setResults={setResults} />
+                                        <SearchList results={results} />
+                                    </div> */}
                                     <button
                                         type="submit"
-                                        className=" flex self-center w-12 invert ml-3"
+                                        className=" flex self-start w-12 invert ml-3"
                                     >
                                         <img src={search} alt="search icon" />
                                     </button>

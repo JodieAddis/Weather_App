@@ -44,7 +44,7 @@ export const Weather = ({ lat, lon }) => {
         return sunHour;
     };
 
-    console.log(unixConvert(1693283540));
+    // console.log(unixConvert(1693283540));
 
     return (
         <>
@@ -82,12 +82,8 @@ export const Weather = ({ lat, lon }) => {
                     </section>
                     <section className="text-white">
                         <ul className="flex flex-row justify-around my-9">
-                            <li>
-                                Min. temp.: {Math.round(data.main.temp_min)}°{" "}
-                            </li>
-                            <li>
-                                Max. temp.: {Math.round(data.main.temp_max)}°
-                            </li>
+                            <li>Min.: {Math.round(data.main.temp_min)}° </li>
+                            <li>Max.: {Math.round(data.main.temp_max)}°</li>
                         </ul>
                     </section>
                     <section className="weather__details flex justify-center flex-col text-white bg-blue-500 rounded-t-2xl pb-10">
@@ -98,9 +94,9 @@ export const Weather = ({ lat, lon }) => {
                         />
                         <ul className="text-center">
                             {/* <li>Sunrise {data.sys.sunrise}</li> */}
-                            <li>Sunrise {unixConvert(data.sys.sunrise)}</li>
+                            <li>Sunrise: {unixConvert(data.sys.sunrise)}</li>
                             {/* <li>Sunset {data.sys.sunset}</li> */}
-                            <li>Sunset {unixConvert(data.sys.sunset)}</li>
+                            <li>Sunset: {unixConvert(data.sys.sunset)}</li>
                             <li>Humidity: {data.main.humidity}%</li>
                             <li>Pressure: {data.main.pressure} Pa</li>
                             <li>Wind: {data.wind.speed} m/s</li>
@@ -111,19 +107,3 @@ export const Weather = ({ lat, lon }) => {
         </>
     );
 };
-
-// let unix_timestamp = 1549312452
-// // Create a new JavaScript Date object based on the timestamp
-// // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-// var date = new Date(unix_timestamp * 1000);
-// // Hours part from the timestamp
-// var hours = date.getHours();
-// // Minutes part from the timestamp
-// var minutes = "0" + date.getMinutes();
-// // Seconds part from the timestamp
-// var seconds = "0" + date.getSeconds();
-
-// // Will display time in 10:30:23 format
-// var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-
-// console.log(formattedTime);
