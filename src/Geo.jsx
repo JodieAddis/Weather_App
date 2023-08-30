@@ -75,7 +75,7 @@ export const GeoLocation = () => {
         <div>
             <header
                 className={`${
-                    isDarkMode ? "bg-purple-700" : "bg-blue-300"
+                    isDarkMode ? "bg-purple-700" : "bg-darkOrange"
                 } w-screen px-3.5 py-3.5 rounded-b-xl absolute z-10`}
             >
                 <div>
@@ -125,9 +125,8 @@ export const GeoLocation = () => {
                 </div>
             </header>
 
-            <main className="bg-gray-800 py-20">
-                <section className="flex justify-between">
-                    <p>Date</p>
+            <main className={`${isDarkMode ? "bg-mauve" : "bg-saumon"} pt-20`}>
+                <section className="flex justify-end mx-4 pb-5">
                     <LightSwitch />
                 </section>
                 <section>

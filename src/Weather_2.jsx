@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { GeoLocation } from "./Geo";
 import config from "./config";
 import down_arrow from "./assets/image/down_arrow.svg";
 import up_arrow from "./assets/image/up_arrow.svg";
+import { DarkModeContext } from "./DarkMode";
+import { getDate } from "./getDate";
 
 const API_KEY = config.apiKey;
 
@@ -46,6 +48,10 @@ export const Weather = ({ lat, lon }) => {
 
     // console.log(unixConvert(1693283540));
 
+    const { isDarkMode } = useContext(DarkModeContext);
+
+    const [currentDate, setCurrentDate] = useState(getDate());
+
     return (
         <>
             {weather.isLoading && (
@@ -59,17 +65,18 @@ export const Weather = ({ lat, lon }) => {
             {weather.hasError && <p>Une erreur s'est produite</p>}
             {data && data.weather && data.weather.length > 0 && (
                 <>
-                    <section className=" flex flex-col text-white">
-                        <h2 className="text-center text-3xl font-bold m-8 font-phudu">
+                    <section className=" flex flex-col text-white text-center">
+                        <h2 className="text-3xl font-bold mx-8 mt-8 mb-2 font-phudu">
                             {data.name}
                         </h2>
+                        <p className="text-white mb-5">{currentDate}</p>
                         <div className=" self-center bg-blue-500 w-56 h-56 rounded-t-full rounded-b-full backdrop-blur-xl">
                             <div className="flex justify-center flex-col content-around text-center my-auto">
                                 <ul>
                                     <li className="my-4">
                                         {data.weather[0].main}
                                     </li>
-                                    <li className="self-center text-5xl font-bold my-10">
+                                    <li className="self-center text-5xl font-bold my-10 font-phudu">
                                         {Math.round(data.main.temp)}°
                                     </li>
                                     <li className="my-4">
@@ -86,7 +93,11 @@ export const Weather = ({ lat, lon }) => {
                             <li>Max.: {Math.round(data.main.temp_max)}°</li>
                         </ul>
                     </section>
-                    <section className="weather__details flex justify-center flex-col text-white bg-blue-500 rounded-t-2xl pb-10">
+                    <section
+                        className={`${
+                            isDarkMode ? "bg-purple-700" : "bg-darkOrange"
+                        } flex justify-center flex-col text-white bg-blue-500 rounded-t-2xl pb-10`}
+                    >
                         <img
                             src={up_arrow}
                             alt="down arrow icon"
