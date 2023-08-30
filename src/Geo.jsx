@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import config from "./config";
 import { Weather } from "./Weather_2";
 import list from "./assets/image/list.svg";
@@ -6,6 +6,8 @@ import close from "./assets/image/close.svg";
 import search from "./assets/image/search.svg";
 // import { Autocomplete } from "./Autocomplete";
 // import { SearchList } from "./SearchList";
+import { DarkModeContext } from "./DarkMode";
+import { LightSwitch } from "./LightSwitch";
 
 export const GeoLocation = () => {
     const [location, setLocation] = useState("");
@@ -40,6 +42,9 @@ export const GeoLocation = () => {
         setOpenNav(false); //On remet sur false pour fermer la navbar
     };
 
+    //Appel du contexte DarkModeApp pour appliquer le darkMode au contenu
+    const { isDarkMode } = useContext(DarkModeContext);
+
     useEffect(() => {
         if (location) {
             // Ajout de la condition pour éviter les requêtes vides
@@ -67,8 +72,12 @@ export const GeoLocation = () => {
     }, [location, API_KEY]);
 
     return (
-        <>
-            <header className=" bg-indigo-500 w-screen px-3.5 py-3.5 rounded-b-xl absolute z-10">
+        <div>
+            <header
+                className={`${
+                    isDarkMode ? "bg-purple-700" : "bg-blue-300"
+                } w-screen px-3.5 py-3.5 rounded-b-xl absolute z-10`}
+            >
                 <div>
                     <div className="flex justify-between">
                         <button onClick={toggleNavBar}>
@@ -117,18 +126,25 @@ export const GeoLocation = () => {
             </header>
 
             <main className="bg-gray-800 py-20">
-                {location && (
-                    <>
-                        <Weather lat={lat} lon={lon} />
-                    </>
-                )}
+                <section className="flex justify-between">
+                    <p>Date</p>
+                    <LightSwitch />
+                </section>
+                <section>
+                    {location && (
+                        <>
+                            <Weather lat={lat} lon={lon} />
+                        </>
+                    )}
+                </section>
             </main>
-        </>
+        </div>
     );
 };
 
 /*
 - Mise de l'input dans une NavBar : Ok
 - Stockage de la dernière ville dans le localStorage : 
+- Application d'un darkmode : 
 
 */
