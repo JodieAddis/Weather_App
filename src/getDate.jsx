@@ -22,7 +22,7 @@ export const getDate = () => {
     return (
         <>
             <p>
-                {date} {month} - {hours}:{minutes}
+                {date} {month} - {hours}h{minutes}
             </p>
         </>
     );

@@ -4,10 +4,11 @@ import { Weather } from "./Weather_2";
 import list from "./assets/image/list.svg";
 import close from "./assets/image/close.svg";
 import search from "./assets/image/search.svg";
-// import { Autocomplete } from "./Autocomplete";
-// import { SearchList } from "./SearchList";
 import { DarkModeContext } from "./DarkMode";
 import { LightSwitch } from "./LightSwitch";
+import dayCity from "./assets/image/jour.png";
+import nightCity from "./assets/image/nuit.png";
+import { BsLinkedin, BsGithub } from "react-icons/bs";
 
 export const GeoLocation = () => {
     const [location, setLocation] = useState("");
@@ -72,19 +73,19 @@ export const GeoLocation = () => {
     }, [location, API_KEY]);
 
     return (
-        <div>
-            <header
-                className={`${
-                    isDarkMode ? "bg-purple-700" : "bg-darkOrange"
-                } w-screen px-3.5 py-3.5 rounded-b-xl absolute z-10`}
-            >
+        <div
+            className={`${
+                isDarkMode ? "bg-darkBackground" : "bg-lightBackground"
+            } pt-`}
+        >
+            <header className="w-screen px-3.5 pt-3.5 z-10 border-white border-solid border-b-2">
                 <div>
                     <div className="flex justify-between">
                         <button onClick={toggleNavBar}>
                             <img
                                 src={openNav ? close : list}
                                 alt="menu icon"
-                                className="invert w-4"
+                                className="invert w-6 "
                             />
                         </button>
                         <h1 className="text-indigo-50 text-2xl font-semibold">
@@ -104,14 +105,10 @@ export const GeoLocation = () => {
                                         name="location"
                                         id="input_location"
                                         placeholder="City name"
-                                        className="text-md"
+                                        className="text-md italic border-darkOrange border-solid border-3"
                                         value={inputLocation}
                                         onChange={handleInputLocation}
                                     />
-                                    {/* <div>
-                                        <Autocomplete setResults={setResults} />
-                                        <SearchList results={results} />
-                                    </div> */}
                                     <button
                                         type="submit"
                                         className=" flex self-start w-12 invert ml-3"
@@ -123,10 +120,16 @@ export const GeoLocation = () => {
                         </nav>
                     )}
                 </div>
+                <div>
+                    <img
+                        src={isDarkMode ? nightCity : dayCity}
+                        alt="city contour"
+                        className="flex w-52 mx-auto"
+                    />
+                </div>
             </header>
-
-            <main className={`${isDarkMode ? "bg-mauve" : "bg-saumon"} pt-20`}>
-                <section className="flex justify-end mx-4 pb-5">
+            <main>
+                <section className="flex justify-end mx-4 mt-5 pb-5">
                     <LightSwitch />
                 </section>
                 <section>
@@ -137,6 +140,23 @@ export const GeoLocation = () => {
                     )}
                 </section>
             </main>
+            <footer
+                className={`${
+                    isDarkMode ? "bg-darkGrey" : "bg-white"
+                } text-white bg-opacity-10`}
+            >
+                <hr className="mx-14 border-white border-solid border-1" />
+                <p className="text-xs text-center py-4">
+                    Weather App coded by{" "}
+                    <a href="https://github.com/JodieAddis">Jodie Addis</a>
+                </p>
+                <a href="https://www.linkedin.com/in/jodieaddis/">
+                    <img src={<BsLinkedin />} alt="LinkedIn icon" />
+                </a>
+                <a href="https://github.com/JodieAddis">
+                    <img src={<BsGithub />} alt="Github icon" />
+                </a>
+            </footer>
         </div>
     );
 };
@@ -144,6 +164,6 @@ export const GeoLocation = () => {
 /*
 - Mise de l'input dans une NavBar : Ok
 - Stockage de la dernière ville dans le localStorage : 
-- Application d'un darkmode : 
+- Application d'un darkmode : Ok 
 
 */

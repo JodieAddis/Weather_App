@@ -46,11 +46,14 @@ export const Weather = ({ lat, lon }) => {
         return sunHour;
     };
 
-    // console.log(unixConvert(1693283540));
-
     const { isDarkMode } = useContext(DarkModeContext);
 
     const [currentDate, setCurrentDate] = useState(getDate());
+
+    const [showDetails, setShowDetails] = useState(false);
+    const handleClick = () => {
+        setShowDetails(!showDetails);
+    };
 
     return (
         <>
@@ -65,21 +68,25 @@ export const Weather = ({ lat, lon }) => {
             {weather.hasError && <p>Une erreur s'est produite</p>}
             {data && data.weather && data.weather.length > 0 && (
                 <>
-                    <section className=" flex flex-col text-white text-center">
-                        <h2 className="text-3xl font-bold mx-8 mt-8 mb-2 font-phudu">
-                            {data.name}
-                        </h2>
-                        <p className="text-white mb-5">{currentDate}</p>
-                        <div className=" self-center bg-blue-500 w-56 h-56 rounded-t-full rounded-b-full backdrop-blur-xl">
+                    <section className=" flex flex-col text-white text-center font-julius">
+                        <h2 className="text-5xl mx-8 mt-6 mb-2">{data.name}</h2>
+                        <p className="text-white mb-5 text-sm">{currentDate}</p>
+                        <div
+                            className={`${
+                                isDarkMode
+                                    ? "bg-darkGrey bg-opacity-20 border-lightPurple border-solid border-2"
+                                    : "bg-white bg-opacity-20 border-white border-solid border-2"
+                            } self-center w-56 h-56 rounded-t-full rounded-b-full backdrop-blur-xl`}
+                        >
                             <div className="flex justify-center flex-col content-around text-center my-auto">
                                 <ul>
-                                    <li className="my-4">
+                                    <li className="my-4 text-sm">
                                         {data.weather[0].main}
                                     </li>
-                                    <li className="self-center text-5xl font-bold my-10 font-phudu">
+                                    <li className="self-center text-6xl semi-bold my-10 font-phudu">
                                         {Math.round(data.main.temp)}°
                                     </li>
-                                    <li className="my-4">
+                                    <li className="my-4 text-sm">
                                         Feels like{" "}
                                         {Math.round(data.main.feels_like)}°
                                     </li>
@@ -87,7 +94,7 @@ export const Weather = ({ lat, lon }) => {
                             </div>
                         </div>
                     </section>
-                    <section className="text-white">
+                    <section className="text-white font-julius">
                         <ul className="flex flex-row justify-around my-9">
                             <li>Min.: {Math.round(data.main.temp_min)}° </li>
                             <li>Max.: {Math.round(data.main.temp_max)}°</li>
@@ -95,23 +102,29 @@ export const Weather = ({ lat, lon }) => {
                     </section>
                     <section
                         className={`${
-                            isDarkMode ? "bg-purple-700" : "bg-darkOrange"
-                        } flex justify-center flex-col text-white bg-blue-500 rounded-t-2xl pb-10`}
+                            isDarkMode
+                                ? "bg-darkGrey border-lightPurple bg-opacity-10"
+                                : "bg-white border-white bg-opacity-10"
+                        } flex justify-center flex-col text-white pb-10  border-solid border-t-2 text-sm font-istok`}
                     >
-                        <img
-                            src={up_arrow}
-                            alt="down arrow icon"
-                            className="self-center py-4 w-6 invert"
-                        />
-                        <ul className="text-center">
-                            {/* <li>Sunrise {data.sys.sunrise}</li> */}
-                            <li>Sunrise: {unixConvert(data.sys.sunrise)}</li>
-                            {/* <li>Sunset {data.sys.sunset}</li> */}
-                            <li>Sunset: {unixConvert(data.sys.sunset)}</li>
-                            <li>Humidity: {data.main.humidity}%</li>
-                            <li>Pressure: {data.main.pressure} Pa</li>
-                            <li>Wind: {data.wind.speed} m/s</li>
-                        </ul>
+                        <button onClick={handleClick} className="self-center">
+                            <img
+                                src={showDetails ? down_arrow : up_arrow}
+                                alt="down arrow icon"
+                                className=" py-4 w-8 invert"
+                            />
+                        </button>
+                        {showDetails && (
+                            <ul className="text-center">
+                                <li>
+                                    Sunrise: {unixConvert(data.sys.sunrise)}
+                                </li>
+                                <li>Sunset: {unixConvert(data.sys.sunset)}</li>
+                                <li>Humidity: {data.main.humidity}%</li>
+                                <li>Pressure: {data.main.pressure} Pa</li>
+                                <li>Wind: {data.wind.speed} m/s</li>
+                            </ul>
+                        )}
                     </section>
                 </>
             )}
