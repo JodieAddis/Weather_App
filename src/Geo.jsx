@@ -1,14 +1,16 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import config from "./config";
 import { Weather } from "./Weather_2";
+import { DarkModeContext } from "./DarkMode";
+import { LightSwitch } from "./LightSwitch";
+import { BsLinkedin, BsGithub } from "react-icons/bs";
+import { IconContext } from "react-icons";
+import config from "./config";
+
 import list from "./assets/image/list.svg";
 import close from "./assets/image/close.svg";
 import search from "./assets/image/search.svg";
-import { DarkModeContext } from "./DarkMode";
-import { LightSwitch } from "./LightSwitch";
 import dayCity from "./assets/image/jour.png";
 import nightCity from "./assets/image/nuit.png";
-import { BsLinkedin, BsGithub } from "react-icons/bs";
 
 export const GeoLocation = () => {
     const [location, setLocation] = useState("");
@@ -150,20 +152,22 @@ export const GeoLocation = () => {
                     Weather App coded by{" "}
                     <a href="https://github.com/JodieAddis">Jodie Addis</a>
                 </p>
-                <a href="https://www.linkedin.com/in/jodieaddis/">
-                    <img src={<BsLinkedin />} alt="LinkedIn icon" />
-                </a>
-                <a href="https://github.com/JodieAddis">
-                    <img src={<BsGithub />} alt="Github icon" />
-                </a>
+                <section className="flex flex-row justify-center">
+                    <a
+                        href="https://www.linkedin.com/in/jodieaddis/"
+                        className="mr-3"
+                    >
+                        <IconContext.Provider value={{ size: "1.5em" }}>
+                            <BsLinkedin />
+                        </IconContext.Provider>
+                    </a>
+                    <a href="https://github.com/JodieAddis">
+                        <IconContext.Provider value={{ size: "1.5em" }}>
+                            <BsGithub />
+                        </IconContext.Provider>
+                    </a>
+                </section>
             </footer>
         </div>
     );
 };
-
-/*
-- Mise de l'input dans une NavBar : Ok
-- Stockage de la dernière ville dans le localStorage : 
-- Application d'un darkmode : Ok 
-
-*/

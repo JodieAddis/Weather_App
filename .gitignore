@@ -25,3 +25,5 @@ dist-ssr
 
 # API key
 config.js
+AutoCompleteCity.jsx
+owm_city_list.json
