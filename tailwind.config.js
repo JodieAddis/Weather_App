@@ -28,6 +28,9 @@ export default {
                 julius: ["Julius Sans One", ...defaultTheme.fontFamily.sans],
                 istok: ["Istok Web", ...defaultTheme.fontFamily.sans],
             },
+            gridTemplateRows: {
+                autoGrid: "auto 1fr auto",
+            },
         },
     },
     plugins: [],
