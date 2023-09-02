@@ -21,6 +21,8 @@ export const GeoLocation = () => {
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
 
+    const [infoDisplay, setInfoDisplay] = useState(false);
+
     const API_KEY = config.apiKey;
 
     const handleInputLocation = (e) => {
@@ -67,6 +69,7 @@ export const GeoLocation = () => {
                     setLat(latitude);
                     setLon(longitude);
                     setInputLocation("");
+                    setInfoDisplay(true);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -78,9 +81,9 @@ export const GeoLocation = () => {
         <div
             className={`${
                 isDarkMode ? "bg-darkBackground" : "bg-lightBackground"
-            } grid grid-rows-autoGrid`}
+            } min-h-screen flex flex-col`}
         >
-            <header className="w-screen px-3.5 pt-3.5 z-10 border-white border-solid border-b-2">
+            <header className="w-screen px-3.5 pt-3.5 border-white border-solid border-b-2">
                 <div>
                     <div className="flex justify-between">
                         <button onClick={toggleNavBar}>
@@ -95,8 +98,17 @@ export const GeoLocation = () => {
                         </h1>
                     </div>
                     {openNav && (
-                        <nav className="navigation flex justify-center max-w-screen-xl my-10">
-                            <div className="text-center">
+                        <nav
+                            className={`${
+                                isDarkMode
+                                    ? "bg-darkBackground"
+                                    : "bg-lightBackground"
+                            } min-h-screen w-full absolute z-10 -ml-3.5`}
+                        >
+                            <h2 className="text-white text-center text-2xl font-julius mt-32 mb-12">
+                                Choose a city
+                            </h2>
+                            <div className="flex justify-center text-center overflow-y-auto">
                                 <form
                                     method="get"
                                     onSubmit={handleSubmit}
@@ -119,6 +131,7 @@ export const GeoLocation = () => {
                                     </button>
                                 </form>
                             </div>
+                            {/* <img src={dayCity} alt="" className="mt-20" /> */}
                         </nav>
                     )}
                 </div>
@@ -130,9 +143,22 @@ export const GeoLocation = () => {
                     />
                 </div>
             </header>
-            <main>
-                <section className="flex justify-end mx-4 mt-5 pb-5">
-                    <LightSwitch />
+            <main className="h-full my-auto">
+                {infoDisplay ? (
+                    <section className="flex justify-end mx-4 mt-5 pb-5">
+                        <LightSwitch />
+                    </section>
+                ) : (
+                    ""
+                )}
+                <section className="my-auto">
+                    {infoDisplay ? (
+                        ""
+                    ) : (
+                        <p className="text-white text-center text-xl font-semibold font-julius">
+                            No city has been chosen.
+                        </p>
+                    )}
                 </section>
                 <section>
                     {location && (
@@ -145,23 +171,24 @@ export const GeoLocation = () => {
             <footer
                 className={`${
                     isDarkMode ? "bg-darkGrey" : "bg-white"
-                } text-white bg-opacity-10`}
+                } text-white bg-opacity-10 shrink-0`}
             >
-                <hr className="mx-14 border-white border-solid border-1" />
+                {/* <hr className="mx-14 border-white border-solid border-1" /> */}
                 <p className="text-xs text-center py-4">
                     Weather App coded by{" "}
                     <a href="https://github.com/JodieAddis">Jodie Addis</a>
                 </p>
-                <section className="flex flex-row justify-center">
+                <section className="flex flex-row justify-center pb-7">
                     <a
                         href="https://www.linkedin.com/in/jodieaddis/"
                         className="mr-3"
+                        target="_blank"
                     >
                         <IconContext.Provider value={{ size: "1.5em" }}>
                             <BsLinkedin />
                         </IconContext.Provider>
                     </a>
-                    <a href="https://github.com/JodieAddis">
+                    <a href="https://github.com/JodieAddis" target="_blank">
                         <IconContext.Provider value={{ size: "1.5em" }}>
                             <BsGithub />
                         </IconContext.Provider>
