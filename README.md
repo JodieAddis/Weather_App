@@ -1,5 +1,17 @@
 # Weather App
 
+<center>
+
+<h1>Work in progress...</h1>
+
+</center>
+
+### Next tasks
+
+-   [ ] Implement autocomplete with Mui
+-   [ ] Add ENV variables
+-   [ ] Create a responsive CV design
+
 ## About the project
 
 <center>
