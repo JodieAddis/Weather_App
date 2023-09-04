@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GeoLocation } from "./Geo";
-import config from "./config";
 import down_arrow from "./assets/image/down_arrow.svg";
 import up_arrow from "./assets/image/up_arrow.svg";
 import { DarkModeContext } from "./DarkMode";
 import { getDate } from "./getDate";
 
-const API_KEY = config.apiKey;
+const MY_API_KEY = import.meta.env.VITE_MY_API_KEY;
 
 export const Weather = ({ lat, lon }) => {
     const [weather, setWeather] = useState({
@@ -18,7 +17,7 @@ export const Weather = ({ lat, lon }) => {
     useEffect(() => {
         setWeather((prevWeather) => ({ ...prevWeather, isLoading: true }));
         fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${MY_API_KEY}&units=metric`
         )
             .then((response) => response.json())
             .then((result) => {

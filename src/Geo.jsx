@@ -4,13 +4,14 @@ import { DarkModeContext } from "./DarkMode";
 import { LightSwitch } from "./LightSwitch";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
 import { IconContext } from "react-icons";
-import config from "./config";
 
 import list from "./assets/image/list.svg";
 import close from "./assets/image/close.svg";
 import search from "./assets/image/search.svg";
 import dayCity from "./assets/image/jour.png";
 import nightCity from "./assets/image/nuit.png";
+
+const MY_API_KEY = import.meta.env.VITE_MY_API_KEY;
 
 export const GeoLocation = () => {
     const [location, setLocation] = useState("");
@@ -22,8 +23,6 @@ export const GeoLocation = () => {
     const [lon, setLon] = useState(null);
 
     const [infoDisplay, setInfoDisplay] = useState(false);
-
-    const API_KEY = config.apiKey;
 
     const handleInputLocation = (e) => {
         setInputLocation(e.target.value);
@@ -54,7 +53,7 @@ export const GeoLocation = () => {
         if (location) {
             // Ajout de la condition pour éviter les requêtes vides
             fetch(
-                `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${API_KEY}`
+                `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${MY_API_KEY}`
             )
                 .then((response) => response.json())
                 .then((result) => {
@@ -75,7 +74,7 @@ export const GeoLocation = () => {
                     console.log(error);
                 });
         }
-    }, [location, API_KEY]);
+    }, [location]);
 
     return (
         <div
@@ -131,7 +130,6 @@ export const GeoLocation = () => {
                                     </button>
                                 </form>
                             </div>
-                            {/* <img src={dayCity} alt="" className="mt-20" /> */}
                         </nav>
                     )}
                 </div>
