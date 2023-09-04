@@ -75,7 +75,7 @@ export const GeoLocation = () => {
         >
             <header className="w-screen px-3.5 pt-3.5 border-white border-solid border-b-2">
                 <div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between sm:pb-6">
                         <button onClick={toggleNavBar}>
                             {openNav ? (
                                 <IconContext.Provider
@@ -100,7 +100,7 @@ export const GeoLocation = () => {
                         <img
                             src={Logo}
                             alt="Logo of the website"
-                            className="w-12"
+                            className="w-12 sm:mr-4"
                         />
                     </div>
                     {openNav && (
@@ -109,9 +109,9 @@ export const GeoLocation = () => {
                                 isDarkMode
                                     ? "bg-darkBackground"
                                     : "bg-lightBackground"
-                            } min-h-screen w-full absolute z-10 -ml-3.5`}
+                            } min-h-screen w-full absolute z-10 -ml-3.5 py-40 border-white border-solide border-2`}
                         >
-                            <h2 className="text-white text-center text-2xl font-julius mt-32 mb-12">
+                            <h2 className="text-white text-center text-2xl sm:text-3xl font-julius mt-32 mb-12">
                                 Choose a city
                             </h2>
                             <div className="flex justify-center text-center overflow-y-auto">
@@ -125,7 +125,7 @@ export const GeoLocation = () => {
                                         name="location"
                                         id="input_location"
                                         placeholder="City name"
-                                        className="text-md italic border-darkOrange border-solid border-3"
+                                        className="text-md sm:text-sm italic border-darkOrange border-solid border-3"
                                         value={inputLocation}
                                         onChange={handleInputLocation}
                                     />
@@ -144,7 +144,7 @@ export const GeoLocation = () => {
                     <img
                         src={isDarkMode ? nightCity : dayCity}
                         alt="city contour"
-                        className="flex w-52 mx-auto"
+                        className="flex w-52 sm:w-80 mx-auto"
                     />
                 </div>
             </header>
@@ -176,13 +176,13 @@ export const GeoLocation = () => {
             <footer
                 className={`${
                     isDarkMode ? "bg-darkGrey" : "bg-white"
-                } text-white bg-opacity-10 shrink-0`}
+                } text-white bg-opacity-10 shrink-0 sm:pt-12`}
             >
                 <p className="text-xs text-center py-4">
                     Weather App coded by{" "}
                     <a href="https://github.com/JodieAddis">Jodie Addis</a>
                 </p>
-                <section className="flex flex-row justify-center pb-7">
+                <section className="flex flex-row justify-center pb-7 sm:pb-0 sm:mb-12">
                     <a
                         href="https://www.linkedin.com/in/jodieaddis/"
                         className="mr-3"

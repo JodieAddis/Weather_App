@@ -68,7 +68,9 @@ export const Weather = ({ lat, lon }) => {
             {data && data.weather && data.weather.length > 0 && (
                 <>
                     <section className=" flex flex-col text-white text-center font-julius">
-                        <h2 className="text-4xl mx-8 mt-6 mb-2">{data.name}</h2>
+                        <h2 className="text-4xl sm:text-3xl mx-8 mt-6 mb-2">
+                            {data.name}
+                        </h2>
                         <p className="text-white mb-5 text-sm">{currentDate}</p>
                         <div
                             className={`${
@@ -79,13 +81,13 @@ export const Weather = ({ lat, lon }) => {
                         >
                             <div className="flex justify-center flex-col content-around text-center my-auto">
                                 <ul>
-                                    <li className="my-4 text-sm">
+                                    <li className="my-4 text-sm sm:text-xs">
                                         {data.weather[0].main}
                                     </li>
-                                    <li className="self-center text-5xl semi-bold my-10 font-phudu">
+                                    <li className="self-center text-5xl sm:text-4xl semi-bold my-10 sm:my-12 font-phudu">
                                         {Math.round(data.main.temp)}°
                                     </li>
-                                    <li className="my-4 text-sm">
+                                    <li className="my-4 text-sm sm:text-xs">
                                         Feels like{" "}
                                         {Math.round(data.main.feels_like)}°
                                     </li>
@@ -94,11 +96,11 @@ export const Weather = ({ lat, lon }) => {
                         </div>
                     </section>
                     <section className="text-white font-julius">
-                        <ul className="flex flex-row justify-around my-9 md:my-4 text-sm">
-                            <li>
+                        <ul className="flex flex-row justify-around sm:justify-center my-9 md:my-5 text-sm  sm:pb-10">
+                            <li className="sm:mr-6">
                                 Min. temp. : {Math.round(data.main.temp_min)}°{" "}
                             </li>
-                            <li>
+                            <li className="sm:ml-6">
                                 Max. temp. : {Math.round(data.main.temp_max)}°
                             </li>
                         </ul>
