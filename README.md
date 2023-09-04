@@ -2,9 +2,9 @@
 
 <center>
 
-![Weather App : mobile version](/src/assets/image/readme/LightMode.png)
-![Weather App : details](/src/assets/image/readme/Details.png)
-![Weather App : dark mode version](/src/assets/image/readme/DarkMode.png)
+![Weather App : mobile version](/src/assets/image/readme/weather_app.png)
+![Weather App : details](/src/assets/image/readme/weather_app_details.png)
+![Weather App : dark mode version](/src/assets/image/readme/weather_app_darkMode.png)
 
 </center>
 
