@@ -24,6 +24,10 @@ dist-ssr
 *.sw?
 
 # API key
-config.js
+.env
+
+
+
+# Autocomplete files
 AutoCompleteCity.jsx
 owm_city_list.json

@@ -1,24 +1,23 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { Weather } from "./Weather_2";
+import { Weather } from "./Weather";
 import { DarkModeContext } from "./DarkMode";
 import { LightSwitch } from "./LightSwitch";
-import { BsLinkedin, BsGithub } from "react-icons/bs";
+import { BsLinkedin, BsGithub, BsSearch } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import { MdClose } from "react-icons/md";
+import { RxHamburgerMenu } from "react-icons/rx";
 
-import list from "./assets/image/list.svg";
-import close from "./assets/image/close.svg";
-import search from "./assets/image/search.svg";
 import dayCity from "./assets/image/jour.png";
 import nightCity from "./assets/image/nuit.png";
+import Logo from "./assets/image/Logo.png";
 
 const MY_API_KEY = import.meta.env.VITE_MY_API_KEY;
 
 export const GeoLocation = () => {
     const [location, setLocation] = useState("");
-    const [inputLocation, setInputLocation] = useState(""); //Récupération de l'input
+    const [inputLocation, setInputLocation] = useState("");
 
-    const [openNav, setOpenNav] = useState(false); //Etat ouverture de la navBar
-
+    const [openNav, setOpenNav] = useState(false);
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
 
@@ -28,30 +27,26 @@ export const GeoLocation = () => {
         setInputLocation(e.target.value);
     };
 
-    //Essai pour la création d'un input autocomplete
     const [results, setResults] = useState();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setLocation(inputLocation);
-        closeNavBar(); //Ferme la navbar après le submit
+        closeNavBar();
     };
 
-    //Fonction qui controle l'ouverture et la fermeture de la navbar
     const toggleNavBar = () => {
         setOpenNav(!openNav);
     };
 
     const closeNavBar = () => {
-        setOpenNav(false); //On remet sur false pour fermer la navbar
+        setOpenNav(false);
     };
 
-    //Appel du contexte DarkModeApp pour appliquer le darkMode au contenu
     const { isDarkMode } = useContext(DarkModeContext);
 
     useEffect(() => {
         if (location) {
-            // Ajout de la condition pour éviter les requêtes vides
             fetch(
                 `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${MY_API_KEY}`
             )
@@ -60,10 +55,6 @@ export const GeoLocation = () => {
                     const resultAPI = result[0];
                     const latitude = resultAPI.lat;
                     const longitude = resultAPI.lon;
-
-                    // console.log(result[0]);
-                    // console.log(latitude);
-                    // console.log(longitude);
 
                     setLat(latitude);
                     setLon(longitude);
@@ -86,15 +77,31 @@ export const GeoLocation = () => {
                 <div>
                     <div className="flex justify-between">
                         <button onClick={toggleNavBar}>
-                            <img
-                                src={openNav ? close : list}
-                                alt="menu icon"
-                                className="invert w-6 "
-                            />
+                            {openNav ? (
+                                <IconContext.Provider
+                                    value={{
+                                        style: { filter: "invert(1)" },
+                                        size: "1.5em",
+                                    }}
+                                >
+                                    <MdClose />
+                                </IconContext.Provider>
+                            ) : (
+                                <IconContext.Provider
+                                    value={{
+                                        style: { filter: "invert(1)" },
+                                        size: "1.5em",
+                                    }}
+                                >
+                                    <RxHamburgerMenu />
+                                </IconContext.Provider>
+                            )}
                         </button>
-                        <h1 className="text-indigo-50 text-2xl font-semibold">
-                            Logo
-                        </h1>
+                        <img
+                            src={Logo}
+                            alt="Logo of the website"
+                            className="w-12"
+                        />
                     </div>
                     {openNav && (
                         <nav
@@ -124,9 +131,9 @@ export const GeoLocation = () => {
                                     />
                                     <button
                                         type="submit"
-                                        className=" flex self-start w-12 invert ml-3"
+                                        className=" flex self-center w-12 ml-3 invert"
                                     >
-                                        <img src={search} alt="search icon" />
+                                        <BsSearch />
                                     </button>
                                 </form>
                             </div>
@@ -171,7 +178,6 @@ export const GeoLocation = () => {
                     isDarkMode ? "bg-darkGrey" : "bg-white"
                 } text-white bg-opacity-10 shrink-0`}
             >
-                {/* <hr className="mx-14 border-white border-solid border-1" /> */}
                 <p className="text-xs text-center py-4">
                     Weather App coded by{" "}
                     <a href="https://github.com/JodieAddis">Jodie Addis</a>

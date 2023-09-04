@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export const Input = (event) => {
+const Input = (event) => {
     const country = useRef(null);
 
     const handleClickEvent = () => {

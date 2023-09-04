@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { DarkModeContext } from "./DarkMode"; // Assurez-vous que le chemin d'importation est correct
+import { DarkModeContext } from "./DarkMode";
+import { IconContext } from "react-icons";
 import { WiDaySunny, WiMoonWaningCrescent3 } from "react-icons/wi";
 
 export const LightSwitch = () => {
