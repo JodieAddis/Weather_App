@@ -94,7 +94,7 @@ export const Weather = ({ lat, lon }) => {
                         </div>
                     </section>
                     <section className="text-white font-julius">
-                        <ul className="flex flex-row justify-around my-9 text-sm">
+                        <ul className="flex flex-row justify-around my-9 md:my-4 text-sm">
                             <li>
                                 Min. temp. : {Math.round(data.main.temp_min)}°{" "}
                             </li>
@@ -108,7 +108,7 @@ export const Weather = ({ lat, lon }) => {
                             isDarkMode
                                 ? "bg-darkGrey border-lightPurple bg-opacity-10"
                                 : "bg-white border-white bg-opacity-10"
-                        } flex justify-center flex-col text-white pb-10  border-solid border-t-2 text-sm font-istok`}
+                        } flex justify-center flex-col text-white border-solid border-t-2 text-sm font-istok`}
                     >
                         <button onClick={handleClick} className="self-center">
                             <img
