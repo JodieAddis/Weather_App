@@ -48,7 +48,7 @@ export const GeoLocation = () => {
     useEffect(() => {
         if (location) {
             fetch(
-                `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${MY_API_KEY}`
+                `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${MY_API_KEY}`
             )
                 .then((response) => response.json())
                 .then((result) => {
