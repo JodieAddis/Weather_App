@@ -71,7 +71,7 @@ export const GeoLocation = () => {
         <div
             className={`${
                 isDarkMode ? "bg-darkBackground" : "bg-lightBackground"
-            } min-h-screen flex flex-col`}
+            } min-h-screen w-screen flex flex-col`}
         >
             <header className="w-screen px-3.5 pt-3.5 border-white border-solid border-b-2">
                 <div>
