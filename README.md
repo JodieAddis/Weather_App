@@ -10,13 +10,13 @@
 
 ## About the project
 
-###
-
-<center>
+### Weather App
 
 **Weather App** is a project aimed at providing the current weather based on a city provided by users. General weather information is displayed, but more detailed information (_pressure, humidity, etc_) is available in a separate tab. This application also features a dark mode version.
 
-</center>
+### Objective
+
+Implementing API calls and utilizing **React Hooks** for the creation of the application. Using the **Tailwind** CSS framework for its design.
 
 ## Coding Technologies Used
 
